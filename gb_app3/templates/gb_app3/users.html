@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %} Список всех пользователей {% endblock %}
+
+{% block content %}
+    <h2> Список всех пользователей </h2>
+    <table>
+        {% for us in users %}
+        <tr>
+            <td><a href="{% url 'user_products' us.id 0 %}">{{ us }}</a>
+        </tr>
+        {% endfor %}
+
+    </table>
+    <br><br>
+    <a href="{% url 'index' %}"> Начальное меню </a>
+
+{% endblock %}

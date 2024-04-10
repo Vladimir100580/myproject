@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %} Список всех товаров {% endblock %}
+
+{% block content %}
+        <h2> Выберите товар, для добавления или изменения его изображения </h2>
+        <table>
+            {% for prod in prods %}
+            <tr>
+                <td><a href="{% url 'add_prod_picture' prod.id %}">{{ prod }}</a>
+                {% if prod.image_us %}
+                    <td><img src="{{prod.image_us}}">
+                {% endif %}
+                <br><br>
+            </tr>
+            {% endfor %}
+        </table>
+        <br><br><br>
+        <a href="{% url 'index' %}"> Начальное меню </a>
+    <style>
+    img {
+        height: auto;
+        width: 30%;
+        max-width: 100px;
+    }
+    </style>
+
+{% endblock %}

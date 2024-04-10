@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %} Список товаров пользователя {{user.name}} {% endblock %}
+
+{% block content %}
+    <h2> Список товаров пользователя {{user.name}}, заказанных за {{days}}. </h2>
+    <table>
+        {% for order in orders %}
+            {% for product in order.products.all %}
+                    <tr>
+                        <td>{{ product }} Дата: {{order.date_ordered}}</td>
+                    </tr>
+            {% endfor %}
+        {% endfor %}
+    </table>
+    <br><br>
+    <h3> Вывести заказы: </h3>
+    <a href="{% url 'user_products' user.id 7 %}"> за последнюю неделю </a><br><br>
+    <a href="{% url 'user_products' user.id 30 %}"> за последний месяц </a><br><br>
+    <a href="{% url 'user_products' user.id 365 %}"> за последний год </a><br><br>
+    <a href="{% url 'user_products' user.id 0 %}"> за все время </a><br><br><br>
+    <a href="{% url 'users1' %}"> К списку пользователей </a><br><br>
+{% endblock %}

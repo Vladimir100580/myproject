@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2> Загрузите изображение для товара {{pr.name}}, цена: {{pr.price}}</h2>
+    {% if pr.image_us %}
+        <h2> Текущее изображение товара </h2>
+        <img src="{{pr.image_us}}">
+    {% endif %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Загрузить</button>
+    </form>
+    <br><br>
+    <a href="{% url 'all_products' %}"> Вернуться к списку товаров </a>
+
+    <style>
+    img {
+        height: auto;
+        width: 60%;
+        max-width: 500px;
+    }
+    </style>
+
+{% endblock %}
